@@ -1,0 +1,15 @@
+{% load thumbnail %}
+{% if not forloop.first %}<hr>{% endif %}
+    <ul>
+      <li>
+        <a href="{% url 'posts:profile' post.author %}">
+          Автор: {{post.author.get_full_name}}</a>
+      </li>
+      <li>
+        Дата публикации: {{post.pub_date|date:"d E Y"}}
+      </li>
+    </ul>
+    {% thumbnail post.image "960x339" padding=True upscale=True as im %}
+    <img class="card-img my-10"  src="{{ im.url }}" >
+  {% endthumbnail %}
+    <p> {{post.text}}</p>
