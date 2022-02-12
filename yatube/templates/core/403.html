@@ -2,4 +2,6 @@
 {% block title %}Custom 403{% endblock %}
 {% block content %}
     <h1>Custom 403</h1>
+    <p>Доступ к странице с адресом {{ path }} запрещен</p>
+    <a href="{% url 'posts:main' %}"> Идите на главную</a>
 {% endblock %}

@@ -11,6 +11,8 @@
     <h1>Все посты пользователя {{ author.get_full_name }} </h1>
     <h3>Всего постов: {{ post_number }} </h3>
 
+  {% if user != author and user.is_authenticated %}
+
     {% if following %}
     <a
       class="btn btn-lg btn-light"
@@ -25,7 +27,9 @@
       >
         Подписаться
       </a>
-   {% endif %}
+      {% endif %}
+
+  {% endif %}
 
     </div>
         {% for post in page_obj %}

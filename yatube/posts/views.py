@@ -129,7 +129,7 @@ def add_comment(request, post_id):
 
 @login_required
 def follow_index(request):
-    # информация о текущем пользователе доступна в переменной request.user
+    """Информация о текущем пользователе доступна в переменной request.user."""
     follow_posts = Post.objects.filter(author__following__user=request.user)
     paginator = Paginator(follow_posts, NUMBER_POSTS)
     page_number = request.GET.get('page_obj')
@@ -143,7 +143,7 @@ def follow_index(request):
 
 @login_required
 def profile_follow(request, username):
-    # Подписаться на автора
+    """Подписаться на автора."""
     author = get_object_or_404(User, username=username)
     user = request.user
     if (
@@ -156,7 +156,7 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
-    # Дизлайк, отписка
+    """Дизлайк, отписка."""
     author = get_object_or_404(User, username=username)
     Follow.objects.filter(user=request.user, author=author).delete()
     return redirect('posts:profile', username=author.username)

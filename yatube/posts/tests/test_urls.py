@@ -42,8 +42,6 @@ class PostPagesTests(TestCase):
             f'/posts/{self.post.id}/': 'posts/post_detail.html',
             f'/posts/{self.post.id}/edit/': 'posts/create_post.html',
             '/create/': 'posts/create_post.html',
-            '/about/author/': 'about/author.html',
-            '/about/tech/': 'about/tech.html',
             '/follow/': 'posts/follow.html',
         }
         for url, template in templates_url_names.items():
@@ -54,8 +52,6 @@ class PostPagesTests(TestCase):
     def test_urls_status_code(self):
         urls_names = [
             ['/', self.guest_client, HTTPStatus.OK],
-            ['/about/author/', self.guest_client, HTTPStatus.OK],
-            ['/about/tech/', self.guest_client, HTTPStatus.OK],
             [f'/group/{self.group.slug}/', self.guest_client, HTTPStatus.OK],
             [f'/profile/{self.user_author}/', self.guest_client,
                 HTTPStatus.OK],
@@ -67,9 +63,6 @@ class PostPagesTests(TestCase):
 
             ['/create/', self.authorized_client, HTTPStatus.OK],
             ['/create/', self.guest_client, HTTPStatus.FOUND],
-
-            # Запрос к страница unixisting_page вернет ошибку 404
-            ['/unixisting_page/', self.guest_client, HTTPStatus.NOT_FOUND],
 
             [f'/posts/{self.post.id}/comment/', self.guest_client,
                 HTTPStatus.FOUND],

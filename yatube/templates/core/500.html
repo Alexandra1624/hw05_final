@@ -2,4 +2,6 @@
 {% block title %}Custom 500{% endblock %}
 {% block content %}
     <h1>Custom 500</h1>
+    <p>Ошибка на сервере, попробуйте обновить страницу или обратиться позже</p>
+    <p><a href="{% url 'posts:main' %}">Идите на главную</a></p>
 {% endblock %}

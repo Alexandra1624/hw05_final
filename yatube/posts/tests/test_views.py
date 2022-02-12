@@ -195,13 +195,6 @@ class PostPagesTests(TestCase):
         new_new_content = new_new_response.content
         self.assertNotEqual(content, new_new_content)
 
-    def test_error_page(self):
-        response = self.client.get('/nonexist-page/')
-        # Cтатус ответа сервера - 404
-        self.assertEqual(response.status_code, 404)
-        # Используется шаблон core/404.html
-        self.assertTemplateUsed(response, 'core/404.html')
-
 
 class PaginatorViewsTest(TestCase):
     @classmethod
